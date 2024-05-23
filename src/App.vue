@@ -10,6 +10,19 @@
       v-if="!isCardsLoading"
     ></card-list>
     <div v-else>Идёт загрузка...</div>
+    <div class="page__wrapper">
+      <div
+        v-for="pageNumber in totalPages"
+        class="page"
+        :class="{
+          'current-page': page === pageNumber,
+        }"
+        :key="pageNumber"
+        @click="changePage(pageNumber)"
+      >
+        {{ pageNumber }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,6 +42,9 @@ export default {
       isCardsLoading: false,
       selectedSort: "",
       searchQuery: "",
+      page: 1,
+      limit: 10,
+      totalPages: 0,
       sortOptions: [
         { value: "name", name: "По имени" },
         { value: "status", name: "По статусу" },
@@ -36,12 +52,23 @@ export default {
     };
   },
   methods: {
+    changePage(pageNumber) {
+      this.page = pageNumber;
+    },
     async fetchCards() {
       try {
         this.isCardsLoading = true;
         const response = await axios.get(
-          "https://rickandmortyapi.com/api/character?_limit=10"
+          "https://rickandmortyapi.com/api/character",
+          {
+            params: {
+              page: this.page,
+              limit: this.limit,
+            },
+          }
         );
+        console.log(response);
+        this.totalPages = response.data.info.pages;
         this.cards = response.data.results;
       } catch (e) {
         alert("Ошибка");
@@ -67,7 +94,11 @@ export default {
       );
     },
   },
-  watch: {},
+  watch: {
+    page() {
+      this.fetchCards();
+    }
+  },
 };
 </script>
 
@@ -76,9 +107,25 @@ export default {
   margin: 0;
   padding: 0;
 }
-.search{
+.search {
   display: flex;
   column-gap: 20px;
   justify-content: center;
+  margin-bottom: 15px;
+}
+
+.page__wrapper {
+  display: flex;
+  margin-top: 15px;
+}
+
+.page {
+  border: 1px solid rgb(39, 43, 51);
+  padding: 10px;
+}
+
+.current-page {
+  background-color: rgb(39, 43, 51);
+  color: rgb(255, 255, 255);
 }
 </style>
