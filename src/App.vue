@@ -1,26 +1,49 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <card-list :cards="cards" v-if="!isCardsLoading"></card-list>
+    <div v-else>Идёт загрузка...</div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import CardList from "@/components/CardList.vue";
+import axios from "axios";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    CardList,
+  },
+  data() {
+    return {
+      cards: [],
+      isCardsLoading: false,
+    };
+  },
+  methods: {
+    async fetchCards() {
+      try {
+        this.isCardsLoading = true;
+        const response = await axios.get(
+          "https://rickandmortyapi.com/api/character?_limit=10"
+        );
+        console.log(response);
+        this.cards = response.data.results;
+      } catch (e) {
+        alert("Ошибка");
+      } finally {
+        this.isCardsLoading = false;
+      }
+    },
+  },
+  mounted() {
+    this.fetchCards();
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
 }
 </style>
