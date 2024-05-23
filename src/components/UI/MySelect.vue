@@ -1,5 +1,5 @@
 <template>
-  <select :v-model="modelValue" @change="cangeOption">
+  <select class="select" :v-model="modelValue" @change="cangeOption">
     <option disabled value="">Сортировка</option>
     <option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.name }}
@@ -27,4 +27,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.select {
+  width: 300px;
+  border: 1px solid rgb(39, 43, 51);
+  padding: 10px 15px;
+}
+</style>

@@ -1,8 +1,14 @@
 <template>
   <div>
     <app-banner />
-    <my-select v-model="selectedSort" :options="sortOptions" />
-    <card-list :cards="sortedCards" v-if="!isCardsLoading"></card-list>
+    <div class="search">
+      <my-input v-model="searchQuery" placeholder="Поиск..." />
+      <my-select v-model="selectedSort" :options="sortOptions" />
+    </div>
+    <card-list
+      :cards="sortedAndSearchingCards"
+      v-if="!isCardsLoading"
+    ></card-list>
     <div v-else>Идёт загрузка...</div>
   </div>
 </template>
@@ -22,6 +28,7 @@ export default {
       cards: [],
       isCardsLoading: false,
       selectedSort: "",
+      searchQuery: "",
       sortOptions: [
         { value: "name", name: "По имени" },
         { value: "status", name: "По статусу" },
@@ -54,6 +61,11 @@ export default {
         );
       });
     },
+    sortedAndSearchingCards() {
+      return this.sortedCards.filter((card) =>
+        card.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
   },
   watch: {},
 };
@@ -63,5 +75,10 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+.search{
+  display: flex;
+  column-gap: 20px;
+  justify-content: center;
 }
 </style>
