@@ -1,24 +1,7 @@
 # rick-and-morty
 
-## Project setup
-```
-pnpm install
-```
+## Тестовое задание на Vue
+Карточки персонажей из "Рик и Морти"
+Пагинация, поиск по имени и 2 варианта сортировки
 
-### Compiles and hot-reloads for development
-```
-pnpm run serve
-```
-
-### Compiles and minifies for production
-```
-pnpm run build
-```
-
-### Lints and fixes files
-```
-pnpm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[ссылка на сайт](https://katkovatanya.github.io/rick-and-morty/)
