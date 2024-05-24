@@ -10,7 +10,7 @@
       :cards="sortedAndSearchingCards"
       v-if="!isCardsLoading"
     ></card-list>
-    <div v-else>Идёт загрузка...</div>
+    <my-loader v-else/>
     <app-pagination
       :page="page"
       :totalPages="totalPages"
@@ -63,7 +63,6 @@ export default {
             },
           }
         );
-        console.log(response);
         this.totalPages = response.data.info.pages;
         this.cards = response.data.results;
       } catch (e) {
