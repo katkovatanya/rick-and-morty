@@ -1,25 +1,27 @@
 <template>
-  <div class="card">
-    <img :src="card.image" :alt="card.name" />
-    <div class="card__text">
-      <div>
-        <h2 class="card__title">{{ card.name }}</h2>
-        <div class="card__status">
-          <div
-            class="status__icon"
-            :class="{
-              status__icon__alive: card.status === 'Alive',
-            }"
-          ></div>
-          <div class="card__subtitle">
-            {{ card.status }} - {{ card.species }}
+  <transition name="card" appear>
+    <div class="card">
+      <img :src="card.image" :alt="card.name" />
+      <div class="card__text">
+        <div>
+          <h2 class="card__title">{{ card.name }}</h2>
+          <div class="card__status">
+            <div
+              class="status__icon"
+              :class="{
+                status__icon__alive: card.status === 'Alive',
+              }"
+            ></div>
+            <div class="card__subtitle">
+              {{ card.status }} - {{ card.species }}
+            </div>
           </div>
         </div>
+        <card-info :isLocation="true" :card="card"></card-info>
+        <card-info :isLocation="false" :card="card"></card-info>
       </div>
-      <card-info :isLocation="true" :card="card"></card-info>
-      <card-info :isLocation="false" :card="card"></card-info>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -39,6 +41,14 @@ export default {
 </script>
 
 <style scoped>
+.card-enter-active,
+.card-leave-active {
+  transition: opacity 1s;
+}
+.card-enter,
+.card-leave-to {
+  opacity: 0;
+}
 .card {
   background-color: #666666;
   width: 600px;
@@ -47,6 +57,13 @@ export default {
   overflow: hidden;
   color: rgb(255, 255, 255);
   height: 220px;
+}
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+    max-width: 90vw;
+    height: max-content;
+  }
 }
 .card__text {
   display: flex;
