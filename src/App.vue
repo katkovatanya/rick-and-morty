@@ -3,6 +3,7 @@
     <app-banner />
     <div class="search">
       <my-input v-model="searchQuery" placeholder="Поиск..." />
+      <my-button @click="fetchCards">Искать на всех страницах</my-button>
       <my-select v-model="selectedSort" :options="sortOptions" />
     </div>
     <card-list
@@ -58,6 +59,7 @@ export default {
             params: {
               page: this.page,
               limit: this.limit,
+              name: this.searchQuery,
             },
           }
         );
