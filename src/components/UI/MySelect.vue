@@ -33,4 +33,9 @@ export default {
   border: 1px solid rgb(39, 43, 51);
   padding: 10px 15px;
 }
+@media (max-width: 600px) {
+  .select {
+    width: 200px;
+  }
+}
 </style>

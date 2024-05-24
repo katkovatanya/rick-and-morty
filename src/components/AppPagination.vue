@@ -92,4 +92,15 @@ export default {
   background-color: rgb(39, 43, 51);
   color: rgb(255, 255, 255);
 }
+
+@media (max-width: 600px) {
+  .page {
+    font-size: 14px;
+    padding: 5px;
+  }
+  .page__wrapper {
+    column-gap: 5px;
+    flex-wrap: wrap;
+  }
+}
 </style>

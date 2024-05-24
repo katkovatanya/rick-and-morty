@@ -1,5 +1,10 @@
 <template>
-  <input v-bind:value="modelValue" @input="updateInput" class="input" type="text" />
+  <input
+    v-bind:value="modelValue"
+    @input="updateInput"
+    class="input"
+    type="text"
+  />
 </template>
 
 <script>
@@ -13,7 +18,6 @@ export default {
       this.$emit("update:modelValue", event.target.value);
     },
   },
-
 };
 </script>
 
@@ -22,5 +26,10 @@ export default {
   width: 300px;
   border: 1px solid rgb(39, 43, 51);
   padding: 10px 15px;
+}
+@media (max-width: 600px) {
+  .input {
+    width: 200px;
+  }
 }
 </style>

@@ -10,7 +10,11 @@
       v-if="!isCardsLoading"
     ></card-list>
     <div v-else>Идёт загрузка...</div>
-    <app-pagination :page="page" :totalPages="totalPages" @change-page="changePage" />
+    <app-pagination
+      :page="page"
+      :totalPages="totalPages"
+      @change-page="changePage"
+    />
   </div>
 </template>
 
@@ -102,5 +106,12 @@ export default {
   column-gap: 20px;
   justify-content: center;
   margin-bottom: 15px;
+}
+@media (max-width: 630px) {
+  .search {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+  }
 }
 </style>

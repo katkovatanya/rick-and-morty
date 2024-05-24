@@ -58,7 +58,7 @@ export default {
   color: rgb(255, 255, 255);
   height: 220px;
 }
-@media (max-width: 600px) {
+@media (max-width: 610px) {
   .card {
     flex-direction: column;
     max-width: 90vw;
