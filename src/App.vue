@@ -3,11 +3,11 @@
     <app-banner />
     <div class="search">
       <my-input v-model="searchQuery" placeholder="Поиск..." />
-      <my-button @click="fetchCards">Искать на всех страницах</my-button>
+      <my-button @click="fetchCards">Искать</my-button>
       <my-select v-model="selectedSort" :options="sortOptions" />
     </div>
     <card-list
-      :cards="sortedAndSearchingCards"
+      :cards="sortedCards"
       v-if="!isCardsLoading"
     ></card-list>
     <my-loader v-else/>
@@ -82,11 +82,6 @@ export default {
           card2[this.selectedSort]
         );
       });
-    },
-    sortedAndSearchingCards() {
-      return this.sortedCards.filter((card) =>
-        card.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
     },
   },
   watch: {
