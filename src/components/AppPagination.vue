@@ -73,7 +73,7 @@ export default {
 <style scoped>
 .page__wrapper {
   display: flex;
-  margin-top: 15px;
+  margin: 15px 0;
   column-gap: 10px;
   justify-content: center;
 }
@@ -97,10 +97,11 @@ export default {
   .page {
     font-size: 14px;
     padding: 5px;
+    border-radius: 0.5rem;
   }
   .page__wrapper {
     column-gap: 5px;
-    flex-wrap: wrap;
+    overflow: hidden;
   }
 }
 </style>

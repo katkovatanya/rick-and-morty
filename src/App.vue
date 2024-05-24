@@ -66,7 +66,7 @@ export default {
         this.totalPages = response.data.info.pages;
         this.cards = response.data.results;
       } catch (e) {
-        alert("Ошибка");
+        alert("Ошибка или карточки по запросу не найдены");
       } finally {
         this.isCardsLoading = false;
       }

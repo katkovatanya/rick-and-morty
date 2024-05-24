@@ -62,8 +62,9 @@ export default {
 @media (max-width: 610px) {
   .card {
     flex-direction: column;
-    max-width: 90vw;
+    max-width: 250px;
     height: max-content;
+    justify-self: center;
   }
 }
 .card__text {

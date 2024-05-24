@@ -23,13 +23,14 @@ export default {
 
 <style scoped>
 .input {
-  width: 300px;
+  width: 270px;
   border: 1px solid rgb(39, 43, 51);
   padding: 10px 15px;
+  border-radius: 0.5rem;
 }
 @media (max-width: 600px) {
   .input {
-    width: 200px;
+    width: 170px;
   }
 }
 </style>

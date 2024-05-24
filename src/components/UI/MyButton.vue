@@ -13,8 +13,16 @@ export default {
 <style>
 .btn {
   padding: 10px 15px;
+  width: 300px;
   background: none;
   color: rgb(39, 43, 51);
   border: 1px solid rgb(39, 43, 51);
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .btn{
+    width: 200px;
+  }
 }
 </style>
