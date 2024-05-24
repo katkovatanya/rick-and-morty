@@ -10,6 +10,7 @@
               class="status__icon"
               :class="{
                 status__icon__alive: card.status === 'Alive',
+                status__icon__dead: card.status === 'Dead',
               }"
             ></div>
             <div class="card__subtitle">
@@ -91,15 +92,14 @@ export default {
   height: 0.5rem;
   width: 0.5rem;
   margin-right: 0.375rem;
-  background: rgb(214, 61, 46);
+  background: rgb(133, 133, 133);
   border-radius: 50%;
 }
+.status__icon__dead {
+  background: rgb(214, 61, 46);
+}
 .status__icon__alive {
-  height: 0.5rem;
-  width: 0.5rem;
-  margin-right: 0.375rem;
   background: rgb(46, 214, 102);
-  border-radius: 50%;
 }
 .card__subtitle {
   font-size: 16px;

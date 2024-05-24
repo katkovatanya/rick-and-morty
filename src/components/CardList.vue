@@ -1,5 +1,5 @@
 <template>
-  <transition-group tag="div" class="card-list" name="list" appear>
+  <transition-group tag="div" class="card-list" name="list">
       <card-item v-for="card in cards" :key="card.id" :card="card"/>
     </transition-group>
 </template>
