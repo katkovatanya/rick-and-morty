@@ -15,9 +15,13 @@
       <my-button @click="fetchCards">Применить</my-button>
       <my-select v-model="selectedSort" :options="sortOptions" />
     </div>
-    <card-list :cards="sortedCards" v-if="!isCardsLoading"></card-list>
+    <div class="error-message" v-if="errorMessage">
+      <p class="error-text">{{ errorMessage }}</p>
+    </div>
+    <card-list :cards="sortedCards" v-else-if="!isCardsLoading"></card-list>
     <my-loader v-else />
     <app-pagination
+    v-if="!errorMessage && !isCardsLoading"
       :page="page"
       :totalPages="totalPages"
       @change-page="changePage"
@@ -46,6 +50,7 @@ export default {
       statusQuery: "",
       page: 1,
       totalPages: 0,
+      errorMessage: "",
       sortOptions: [
         { value: "name", name: "По имени" },
         { value: "status", name: "По статусу" },
@@ -71,8 +76,13 @@ export default {
         );
         this.totalPages = response.data.info.pages;
         this.cards = response.data.results;
+        this.errorMessage = "";
       } catch (e) {
-        alert("Ошибка или карточки по запросу не найдены");
+        if (e.response && e.response.data && e.response.data.error) {
+          this.errorMessage = e.response.data.error;
+        } else {
+          this.errorMessage = "Произошла неизвестная ошибка";
+        }
       } finally {
         this.isCardsLoading = false;
       }
@@ -108,6 +118,16 @@ export default {
   column-gap: 20px;
   justify-content: center;
   margin-bottom: 15px;
+}
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  text-align: center;
+}
+.error-text {
+  font-size: 70px;
 }
 @media (max-width: 630px) {
   .search {
