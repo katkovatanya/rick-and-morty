@@ -33,6 +33,7 @@ export default {
   border: 1px solid rgb(39, 43, 51);
   padding: 10px 15px;
   border-radius: 0.5rem;
+  cursor: pointer;
 }
 @media (max-width: 600px) {
   .select {

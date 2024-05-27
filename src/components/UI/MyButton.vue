@@ -18,6 +18,12 @@ export default {
   color: rgb(39, 43, 51);
   border: 1px solid rgb(39, 43, 51);
   border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(39, 43, 51);
+  color: rgb(255, 255, 255);
 }
 
 @media (max-width: 600px) {
