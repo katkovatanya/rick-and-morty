@@ -2,15 +2,21 @@
   <div>
     <app-banner />
     <div class="search">
-      <my-input v-model="searchQuery" placeholder="Поиск..." />
-      <my-button @click="fetchCards">Искать</my-button>
+      <my-input
+        v-model="searchQuery"
+        placeholder="Поиск по имени..."
+        @keyup.enter="fetchCards"
+      />
+      <my-input
+        v-model="statusQuery"
+        placeholder="Поиск по статусу..."
+        @keyup.enter="fetchCards"
+      />
+      <my-button @click="fetchCards">Применить</my-button>
       <my-select v-model="selectedSort" :options="sortOptions" />
     </div>
-    <card-list
-      :cards="sortedCards"
-      v-if="!isCardsLoading"
-    ></card-list>
-    <my-loader v-else/>
+    <card-list :cards="sortedCards" v-if="!isCardsLoading"></card-list>
+    <my-loader v-else />
     <app-pagination
       :page="page"
       :totalPages="totalPages"
@@ -37,8 +43,8 @@ export default {
       isCardsLoading: false,
       selectedSort: "",
       searchQuery: "",
+      statusQuery: "",
       page: 1,
-      limit: 10,
       totalPages: 0,
       sortOptions: [
         { value: "name", name: "По имени" },
@@ -58,8 +64,8 @@ export default {
           {
             params: {
               page: this.page,
-              limit: this.limit,
               name: this.searchQuery,
+              status: this.statusQuery,
             },
           }
         );
