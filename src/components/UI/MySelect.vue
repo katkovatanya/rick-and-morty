@@ -1,6 +1,6 @@
 <template>
   <select class="select" :v-model="modelValue" @change="cangeOption">
-    <option disabled value="">Сортировка</option>
+    <option disabled value="">Фильтрация</option>
     <option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.name }}
     </option>

@@ -9,13 +9,14 @@ export default {};
 <style scoped>
 .title {
   color: rgb(32, 35, 41);
+  background-color: white;
   font-weight: 900;
   font-size: 5.625rem;
   min-height: 275px;
   align-self: center;
   justify-self: center;
   text-align: center;
-  margin-top: 125px;
+  padding-top: 125px;
   font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
     "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";

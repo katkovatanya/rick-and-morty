@@ -53,6 +53,6 @@ export default {
 }
 .info-body {
   font-size: 112.5%;
-    line-height: 1.625;
+  line-height: 1.625;
 }
 </style>

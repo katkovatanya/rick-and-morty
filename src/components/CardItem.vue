@@ -1,26 +1,28 @@
 <template>
   <transition name="card" appear>
-    <div class="card">
-      <img :src="card.image" :alt="card.name" />
-      <div class="card__text">
-        <div>
-          <h2 class="card__title">{{ card.name }}</h2>
-          <div class="card__status">
-            <div
-              class="status__icon"
-              :class="{
-                status__icon__alive: card.status === 'Alive',
-                status__icon__dead: card.status === 'Dead',
-              }"
-            ></div>
-            <div class="card__subtitle">
-              {{ card.status }} - {{ card.species }}
+    <div>
+      <router-link class="card" :to="`/card/${card.id}`">
+        <img :src="card.image" :alt="card.name" />
+        <div class="card__text">
+          <div>
+            <h2 class="card__title">{{ card.name }}</h2>
+            <div class="card__status">
+              <div
+                class="status__icon"
+                :class="{
+                  status__icon__alive: card.status === 'Alive',
+                  status__icon__dead: card.status === 'Dead',
+                }"
+              ></div>
+              <div class="card__subtitle">
+                {{ card.status }} - {{ card.species }}
+              </div>
             </div>
           </div>
+          <card-info :isLocation="true" :card="card"></card-info>
+          <card-info :isLocation="false" :card="card"></card-info>
         </div>
-        <card-info :isLocation="true" :card="card"></card-info>
-        <card-info :isLocation="false" :card="card"></card-info>
-      </div>
+      </router-link>
     </div>
   </transition>
 </template>
@@ -58,6 +60,7 @@ export default {
   overflow: hidden;
   color: rgb(255, 255, 255);
   height: 220px;
+  text-decoration: none;
 }
 @media (max-width: 610px) {
   .card {
